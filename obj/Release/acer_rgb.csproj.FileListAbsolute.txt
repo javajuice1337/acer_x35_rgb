@@ -1,0 +1,9 @@
+e:\projects\acer_rgb\bin\Release\acer_x35_rgb.exe.config
+e:\projects\acer_rgb\bin\Release\acer_x35_rgb.exe
+e:\projects\acer_rgb\bin\Release\acer_x35_rgb.pdb
+e:\projects\acer_rgb\obj\Release\acer_rgb.frmMain.resources
+e:\projects\acer_rgb\obj\Release\acer_rgb.Properties.Resources.resources
+e:\projects\acer_rgb\obj\Release\acer_rgb.csproj.GenerateResource.Cache
+e:\projects\acer_rgb\obj\Release\acer_x35_rgb.exe
+e:\projects\acer_rgb\obj\Release\acer_x35_rgb.pdb
+e:\projects\acer_rgb\obj\Release\acer_rgb.csprojResolveAssemblyReference.cache

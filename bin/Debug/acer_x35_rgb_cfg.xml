@@ -1,0 +1,11 @@
+<acer_x35_rgb version="1.0.0.0">
+  <options autooff="True" autoalarm="True" locX="130" locY="130" />
+  <effects selected="4">
+    <effect id="0" color="-16725761" />
+    <effect id="1" color1="-16725761" color2="-16777216" speed="5" />
+    <effect id="2" color1="-16725761" color2="-16777216" speed="5" />
+    <effect id="3" color1="-1" color2="-65536" speed="5" />
+    <effect id="4" speed="5" />
+    <effect id="5" speed="5" />
+  </effects>
+</acer_x35_rgb>

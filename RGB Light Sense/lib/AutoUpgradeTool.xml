@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AutoUpgradeTool</name>
+    </assembly>
+    <members>
+        <member name="T:AutoUpgradeLib.RemindLaterFormat">
+            <summary>
+                Enum representing the remind later time span.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.RemindLaterFormat.Minutes">
+            <summary>
+                Represents the time span in minutes.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.RemindLaterFormat.Hours">
+            <summary>
+                Represents the time span in hours.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.RemindLaterFormat.Days">
+            <summary>
+                Represents the time span in days.
+            </summary>
+        </member>
+        <member name="T:AutoUpgradeLib.AutoUpdater">
+            <summary>
+                Main class that lets you auto update applications by setting some static fields and executing its Start method.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.AppCastURL">
+            <summary>
+                URL of the xml file that contains information about latest version of the application.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.OpenDownloadPage">
+            <summary>
+                Opens the download url in default browser if true. Very usefull if you have portable application.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.CurrentCulture">
+            <summary>
+                Sets the current culture of the auto update notification window. Set this value if your application supports
+                functionalty to change the languge of the application.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.LetUserSelectRemindLater">
+            <summary>
+                If this is true users see dialog where they can set remind later interval otherwise it will take the interval from
+                RemindLaterAt and RemindLaterTimeSpan fields.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.RemindLaterAt">
+            <summary>
+                Remind Later interval after user should be reminded of update.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.RemindLaterTimeSpan">
+            <summary>
+                Set if RemindLaterAt interval should be in Minutes, Hours or Days.
+            </summary>
+        </member>
+        <member name="T:AutoUpgradeLib.AutoUpdater.CheckForUpdateEventHandler">
+            <summary>
+                A delegate type for hooking up update notifications.
+            </summary>
+            <param name="args">An object containing all the parameters recieved from AppCast XML file. If there will be an error while looking for the XML file then this object will be null.</param>
+        </member>
+        <member name="E:AutoUpgradeLib.AutoUpdater.CheckForUpdateEvent">
+            <summary>
+                An event that clients can use to be notified whenever the update is checked.
+            </summary>
+        </member>
+        <member name="E:AutoUpgradeLib.AutoUpdater.ServerStateChanged">
+            <summary>
+                 An event that clients can use to be notified when query server new version is finished .
+            </summary>
+        </member>
+        <member name="E:AutoUpgradeLib.AutoUpdater.UpdateFormCloseChanged">
+            <summary>
+                 An event that clients can use to be notified when user press cancel updated button .
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.CloseUpdateForm_EventTrigger">
+            <summary>
+                 A function whitch is called by cancel button
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.SetIsTopmost(System.Boolean)">
+            <summary>
+                Check user setting is topmost
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.SetFormOwner(System.Windows.Window)">
+            <summary>
+                Set the windows form owner to WPF main window
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.SetWindowLong(System.Runtime.InteropServices.HandleRef,System.Int32,System.Int32)">
+            <summary>
+            sets the owner of a System.Windows.Forms.Form to a System.Windows.Window
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.Start">
+            <summary>
+                Start checking for new version of application and display dialog to the user if update is available.
+            </summary>
+            
+        </member>
+        <member name="F:AutoUpgradeLib.AutoUpdater.backgroundWorker">
+            <summary>
+                Start checking for new version of application and display dialog to the user if update is available.
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.Start(System.String)">
+            <summary>
+                Start checking for new version of application and display dialog to the user if update is available.
+            </summary>
+            <param name="appCast">URL of the xml file that contains information about latest version of the application.</param>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.Cancel_QueryServer_backgroundwoker">
+            <summary>
+               Cancel and dispose backgroundworker
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.AutoUpdater.DownloadUpdate">
+            <summary>
+                Opens the Download window that download the update and execute the installer when download completes.
+            </summary>
+        </member>
+        <member name="T:AutoUpgradeLib.UpdateInfoEventArgs">
+            <summary>
+                Object of this class gives you all the details about the update useful in handling the update logic yourself.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.UpdateInfoEventArgs.IsUpdateAvailable">
+            <summary>
+                If new update is available then returns true otherwise false.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.UpdateInfoEventArgs.DownloadURL">
+            <summary>
+                Download URL of the update file.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.UpdateInfoEventArgs.ChangelogURL">
+            <summary>
+                URL of the webpage specifying changes in the new update.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.UpdateInfoEventArgs.CurrentVersion">
+            <summary>
+                Returns newest version of the application available to download.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.UpdateInfoEventArgs.InstalledVersion">
+            <summary>
+                Returns version of the application currently installed on the user's PC.
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.BitmapToRegion.CreateControlRegion(System.Windows.Forms.Control,System.Drawing.Bitmap)">
+            <summary>
+            Create and apply the region on the supplied control
+            </summary>
+            <param name="control">The Control object to apply the region to</param>
+            <param name="bitmap">The Bitmap object to create the region from</param>
+        </member>
+        <member name="M:AutoUpgradeLib.BitmapToRegion.CalculateControlGraphicsPath(System.Drawing.Bitmap)">
+            <summary>
+            Calculate the graphics path that representing the figure in the bitmap 
+            excluding the transparent color which is the top left pixel.
+            </summary>
+            <param name="bitmap">The Bitmap object to calculate our graphics path from</param>
+            <returns>Calculated graphics path</returns>
+        </member>
+        <member name="F:AutoUpgradeLib.DownloadUpdateDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.DownloadUpdateDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoUpgradeLib.DownloadUpdateDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.NoUpateFound_Form.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.NoUpateFound_Form.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoUpgradeLib.NoUpateFound_Form.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoUpgradeLib.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.App_icon_02_VPCVILcirwnbhj">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Button_hover">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Button_normal">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.button_ok_hover">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.button_ok_nomal">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.button_ok_press">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Button_press">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.clock_go">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.clock_go_32">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.clock_play">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Close_button_hover1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Close_button_normal1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Close_button_press1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.download">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.download_32">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Download_background">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.download1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Downloading_background">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Downloading_background_bar">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Downloading_bar">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.hand_point">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.NewUpdateFound_background">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.Query_server_ready_background">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AutoUpgradeLib.Properties.Resources.update">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.RemindLaterForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.RemindLaterForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoUpgradeLib.RemindLaterForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:AutoUpgradeLib.UpdateForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoUpgradeLib.UpdateForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoUpgradeLib.UpdateForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>
